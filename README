@@ -1,6 +1,0 @@
-libcoresightomap4430
-====================
-
-libcoresightomap4430 is a set of libraries and examples of code to use
-STM and ETB hardware tracing modules on a OMAP4430 system on chip (for
-instance, on a Pandaboard).
