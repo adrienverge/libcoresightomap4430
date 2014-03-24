@@ -1,14 +1,14 @@
-ifeq (exists, $(shell [ -x "/usr/bin/arm-linux-gnueabi-gcc" ] && echo exists))
-	TOOLCHAIN = arm-linux-gnueabi-
-else ifeq (exists, $(shell [ -x "/usr/bin/arm-none-eabi-gcc" ] && echo exists))
-	TOOLCHAIN = arm-none-eabi-
-else
-	TOOLCHAIN =
+ifeq ($(shell which arm-linux-gnueabihf-gcc 2>&1 >/dev/null && echo 1), 1)
+	TOOLCHAIN = arm-linux-gnueabihf-
+else ifeq ($(shell which arm-none-eabihf-gcc 2>&1 >/dev/null && echo 1), 1)
+	TOOLCHAIN = arm-none-eabihf-
+else ifeq ($(shell which arm-linux-gnu-gcc 2>&1 >/dev/null && echo 1), 1)
+	TOOLCHAIN = arm-linux-gnu-
 endif
 
 CC = $(TOOLCHAIN)gcc
 LD = $(TOOLCHAIN)ld
-CFLAGS = -mcpu=cortex-a9 -Wall
+CFLAGS = -mtune=cortex-a9 -Wall
 LDFLAGS =
 
 LIBS = libetb.o libstm.o libomap4430.o libstp.o
