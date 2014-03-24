@@ -26,6 +26,10 @@
 
 #include "libomap4430.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define STM_XPORT		0x54000000
 #define STM_CHAN_RES		0x1000
 #define STM_CONFIG		0x54161000
@@ -131,7 +135,7 @@ static inline ssize_t stm_send_msg_pkt(struct stm_handle_t *stm_handle,
 	 */
 	if (((uint32_t) data) % 2) {
 		stm_xport_writeb(stm_handle, *(uint8_t *) data, channel);
-		data++;
+		data += 1;
 	}
 	if (((uint32_t) data) % 4) {
 		stm_xport_writew(stm_handle, *(uint16_t *) data, channel);
@@ -162,5 +166,9 @@ static inline ssize_t stm_send_msg_pkt(struct stm_handle_t *stm_handle,
 
 	return len;
 }
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

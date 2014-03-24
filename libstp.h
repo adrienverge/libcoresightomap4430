@@ -21,6 +21,10 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 struct stp_pkt {
 	struct stp_pkt *next;
 	char *data;
@@ -36,5 +40,9 @@ size_t stp_count_pkts(char *in, size_t u8size);
 
 struct stp_pkt *stp_read_pkts_in_raw_etb(char *buf, size_t u8size);
 size_t stp_count_pkts_in_raw_etb(char *buf, size_t u8size);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

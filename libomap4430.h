@@ -27,6 +27,10 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define OMAP4430_CM_EMU	0x4A307000
 #define	OMAP4430_CM_L3INSTR_L3	0x4A008000
 
@@ -51,5 +55,9 @@ void unmap_region(void *vaddr, size_t size);
 void unmap_page(void *vaddr);
 
 int omap4430_enable_emu();
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

@@ -24,6 +24,10 @@
 #include <unistd.h>
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define	CS_ETB	0x54162000
 
 #define CS_UNLOCK_VALUE	0xC5ACCE55
@@ -81,5 +85,9 @@ int etb_disable(struct etb_handle_t *etb_handle);
 int etb_status(struct etb_handle_t *etb_handle);
 
 ssize_t etb_retrieve(struct etb_handle_t *etb_handle, void *buf, size_t bufsize);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
