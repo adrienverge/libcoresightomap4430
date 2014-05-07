@@ -102,19 +102,15 @@ int stm_config_for_etb(struct stm_handle_t *stm_handle);
 int stm_flush(struct stm_handle_t *stm_handle);
 
 /*
- * Strangely, it runs really faster with 'static inline function()' than
- * with a '#define function()'. Maybe some gcc magic?
+ * Sending a 24-bit integer is faster than a 32-bit integer,
+ * as it requires only one write.
  */
-#if 0
-#define stm_send_u24_pkt(stm_handle, channel, data) \
-	stm_xport_ts_writel(stm_handle, (3 << 24) | ((data) & 0xffffff), channel)
-#else
 static inline void stm_send_u24_pkt(struct stm_handle_t *stm_handle,
 				    int channel, uint32_t data)
 {
 	stm_xport_ts_writel(stm_handle, (3 << 24) | ((data) & 0xffffff), channel);
 }
-#endif
+
 static inline void stm_send_u32_pkt(struct stm_handle_t *stm_handle,
 				    int channel, uint32_t data)
 {

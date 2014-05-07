@@ -8,7 +8,7 @@ endif
 
 CC = $(TOOLCHAIN)gcc
 LD = $(TOOLCHAIN)ld
-CFLAGS = -mtune=cortex-a9 -Wall
+CFLAGS = -O2 -g -mtune=cortex-a9 -Wall
 LDFLAGS =
 
 LIBS = libetb.o libstm.o libomap4430.o libstp.o
